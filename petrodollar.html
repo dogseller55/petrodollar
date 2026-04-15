@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미국은 왜 빚더미 위에서도 멀쩡할까?</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a5f28;
+    --text: #e8e4dc;
+    --text-muted: #8a8278;
+    --red: #c0392b;
+    --green: #27ae60;
+    --accent: #d4a843;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(32px, 7vw, 72px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: var(--text);
+    max-width: 800px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    margin-top: 28px;
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 540px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 40px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    animation: pulse 2s ease-in-out infinite;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  /* ── INTRO QUOTE ── */
+  .quote-block {
+    background: var(--card);
+    border-left: 4px solid var(--gold);
+    padding: 36px 40px;
+    margin: 0 auto 64px;
+    max-width: 760px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .quote-block p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--text);
+  }
+
+  .quote-block cite {
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    font-style: normal;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: -24px;
+    display: block;
+    user-select: none;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 28px;
+    color: var(--text);
+  }
+
+  .body-text {
+    font-size: 16px;
+    color: #c8c4bc;
+    line-height: 1.95;
+    margin-bottom: 20px;
+  }
+
+  .body-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── CALLOUT / INSET ── */
+  .callout {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .callout::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .callout-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    margin-bottom: 10px;
+  }
+
+  .callout p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* ── ANALOGY BOX ── */
+  .analogy {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 32px 0;
+  }
+
+  .analogy-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .analogy-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  .analogy p {
+    font-size: 15px;
+    color: #b8b0a0;
+    line-height: 1.9;
+  }
+
+  .analogy p strong {
+    color: var(--gold-light);
+  }
+
+  /* ── OPTIONS GRID ── */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 28px 0;
+  }
+
+  .option-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .option-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(201,168,76,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .option-content strong {
+    display: block;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .option-content span {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .option-item.best {
+    border-color: var(--gold-dim);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .option-item.best .option-icon {
+    background: rgba(201,168,76,0.2);
+  }
+
+  /* ── HISTORY CARDS ── */
+  .history-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 32px 0;
+  }
+
+  .history-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .history-card-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .country-flag {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .country-info strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  .country-info span {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .history-card-body {
+    padding: 20px 24px;
+  }
+
+  .what-they-did {
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: #a09890;
+    line-height: 1.8;
+    border-left: 3px solid var(--gold-dim);
+  }
+
+  .what-happened {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .what-happened .result-tag {
+    display: inline-block;
+    background: rgba(192,57,43,0.15);
+    color: #e74c3c;
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .compare-table thead tr {
+    background: var(--card);
+  }
+
+  .compare-table th {
+    padding: 16px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .compare-table th:first-child { color: var(--text-muted); }
+  .compare-table th:last-child { color: var(--red); }
+  .compare-table th:nth-child(2) { color: var(--green); }
+
+  .compare-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: #a8a09a;
+    line-height: 1.7;
+  }
+
+  .compare-table td:nth-child(2) {
+    background: rgba(39,174,96,0.04);
+    color: #90c8a0;
+  }
+
+  .compare-table td:last-child {
+    background: rgba(192,57,43,0.04);
+    color: #c09090;
+  }
+
+  .compare-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* ── SUMMARY TABLE ── */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 14px;
+  }
+
+  .summary-table th {
+    background: var(--card);
+    padding: 14px 18px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-align: left;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .summary-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    color: #a8a09a;
+    line-height: 1.7;
+    vertical-align: top;
+  }
+
+  .summary-table tr:hover td {
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* ── FINAL CALLOUT ── */
+  .final-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    margin: 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-box::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 24px;
+    font-size: 180px;
+    font-family: 'Noto Serif KR', serif;
+    color: rgba(201,168,76,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .final-box p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(17px, 3vw, 22px);
+    line-height: 1.85;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+  }
+
+  .final-box .highlight {
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── FLOW ARROW ── */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 32px auto;
+    max-width: 400px;
+  }
+
+  .flow-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .flow-item.highlight {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold-dim);
+    color: var(--gold-light);
+  }
+
+  /* ── PRIVILEGE TAG ── */
+  .privilege-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light);
+    border-radius: 6px;
+    padding: 3px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    .callout { padding: 22px 20px; }
+    .analogy { padding: 22px 20px; }
+    .final-box { padding: 32px 24px; }
+    .compare-table th, .compare-table td { padding: 12px 12px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">페트로달러 · 국가 부채 · 달러 패권</div>
+  <h1 class="hero-title">미국은 왜<br><em>빚더미 위에서도</em><br>멀쩡할까?</h1>
+  <p class="hero-subtitle">달러와 석유와 군사력이 얽힌, 지난 50년 세계를 지배한 거대한 게임</p>
+  <div class="hero-divider"></div>
+  <div class="scroll-hint">▼ &nbsp; SCROLL</div>
+</section>
+
+<!-- ── MAIN CONTENT ── -->
+<main>
+
+  <!-- INTRO QUOTE -->
+  <div class="container" style="padding-top: 72px;">
+    <div class="quote-block fade-in">
+      <p>미국은 부채로 유지되는 나라입니다. 전 세계가 석유를 사기 위해 달러를 필요로 하지 않게 되면, 아무도 미국의 국채를 사지 않을 것이고 미국 경제는 파산(디폴트)에 이르게 됩니다.</p>
+      <cite>— 이 글의 핵심 명제</cite>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section class="section fade-in">
+    <div class="container">
+      <span class="section-number">01</span>
+      <div class="section-label">국가 부채의 기본</div>
+      <h2 class="section-title">이상한 나라 미국 —<br>빚이 늘어도 다들 돈을 빌려준다?</h2>
+
+      <p class="body-text">세상에서 가장 많은 빚을 진 나라가 어딘지 알아? 바로 <strong>미국</strong>이야. 2024년 기준으로 미국의 국가 부채는 <strong>약 35조 달러</strong>, 우리 돈으로 환산하면 <strong>4경 원이 넘어.</strong> 숫자가 너무 커서 감도 안 오지?</p>
+
+      <p class="body-text">근데 이상한 점이 있어. 보통 빚이 많으면 신용불량자가 되고, 더 이상 돈을 못 빌리잖아. 그런데 미국은 빚이 늘어도 전 세계가 계속 돈을 빌려줘. 도대체 왜일까?</p>
+
+      <p class="body-text">나라를 운영하려면 돈이 엄청나게 필요해. 군인 월급, 도로 건설, 학교와 병원, 복지... 세금만으론 부족할 때, 나라는 <strong>국채(國債)</strong>를 발행해. 쉽게 말하면 이런 종이야:</p>
+
+      <div class="callout">
+        <div class="callout-label">국채란?</div>
+        <p>"저 미국인데요, 지금 100만 원 빌려주시면 10년 후에 이자 붙여서 갚을게요. 약속!"</p>
+      </div>
+
+      <p class="body-text">전 세계 나라들이 이 종이를 사줘. 그러면 미국은 그 돈으로 나라를 운영하는 거야. 자, 여기서 핵심 질문이 나와. <strong>왜 다들 미국 국채를 사줄까?</strong></p>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section class="section fade-in">
+    <div class="container">
+      <span class="section-number">02</span>
+      <div class="section-label">페트로달러의 탄생</div>
+      <h2 class="section-title">매점 쿠폰의 비밀 —<br>페트로달러 시스템</h2>
+
+      <p class="body-text">1970년대에 미국은 엄청난 거래를 성사시켰어. 당시 세계 최대 산유국 <strong>사우디아라비아</strong>에게 이런 제안을 했거든:</p>
+
+      <div class="callout">
+        <div class="callout-label">미국의 제안 (1973년)</div>
+        <p>"우리가 너희 나라 왕실을 지켜줄게. 최신 무기도 팔고, 군대도 주변에 배치해서 이란이나 이라크가 쳐들어오면 막아줄게. 딱 하나만 지켜줘 — 석유는 반드시 달러로만 팔아."</p>
+      </div>
+
+      <p class="body-text">사우디는 이 제안을 받아들였어. 그리고 다른 산유국들도 하나둘 따라갔어. 이게 바로 <strong>페트로달러(Petrodollar) 시스템</strong>이야. '페트로'는 석유, '달러'는 달러. 이 순간부터 세계에 이런 규칙이 생긴 거야:</p>
+
+      <div class="flow">
+        <div class="flow-item">석유를 사고 싶다</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">달러가 반드시 필요하다</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item highlight">전 세계가 달러를 구해야 한다</div>
+      </div>
+
+      <p class="body-text">한국도, 일본도, 중국도, 독일도 — 에너지가 없으면 공장이 멈추고 나라가 돌아가지 않잖아. 그러니 모든 나라가 달러를 구해야 했어.</p>
+
+      <div class="analogy">
+        <div class="analogy-label">📌 쉬운 비유</div>
+        <p>학교 매점에서 <strong>오직 "이 쿠폰"으로만</strong> 물건을 살 수 있다고 상상해봐. 그러면 친구들은 뭔가 사고 싶을 때마다 이 쿠폰이 필요해. 쿠폰 발행자(미국)는 아무것도 안 해도, 전 세계가 알아서 쿠폰을 구하러 오는 구조가 되는 거야.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section class="section fade-in">
+    <div class="container">
+      <span class="section-number">03</span>
+      <div class="section-label">달러 → 국채의 연결고리</div>
+      <h2 class="section-title">달러가 쌓이면,<br>어디로 갈까?</h2>
+
+      <p class="body-text">자, 이제 사우디아라비아 입장이 돼봐. 석유를 팔아서 달러를 수천억 달러 벌었어. 이 돈을 어떻게 해야 할까?</p>
+
+      <div class="options-grid">
+        <div class="option-item">
+          <div class="option-icon">🏦</div>
+          <div class="option-content">
+            <strong>그냥 금고에 쌓아두면?</strong>
+            <span>물가가 오르면서 돈 가치가 매년 조금씩 녹아내려. 10년 후엔 같은 돈으로 살 수 있는 게 줄어있어.</span>
+          </div>
+        </div>
+        <div class="option-item">
+          <div class="option-icon">💱</div>
+          <div class="option-content">
+            <strong>자국 화폐로 바꾸면?</strong>
+            <span>갑자기 달러를 왕창 팔면 자국 화폐 가치가 폭등해서 수출 경쟁력이 망가져.</span>
+          </div>
+        </div>
+        <div class="option-item">
+          <div class="option-icon">🌍</div>
+          <div class="option-content">
+            <strong>다른 나라 채권을 사면?</strong>
+            <span>유럽이나 중국 채권? 미국보다 망할 위험이 높고, 위기 때 현금화하기도 어려워.</span>
+          </div>
+        </div>
+        <div class="option-item best">
+          <div class="option-icon">🇺🇸</div>
+          <div class="option-content">
+            <strong>미국 국채를 사면? ← 사실상 유일한 선택</strong>
+            <span>안전하고, 이자도 주고, 언제든 현금화 가능한 자산은 전 세계에서 미국 국채 하나밖에 없어.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-item">달러가 필요 → 달러를 모음</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">모은 달러로 미국 국채를 삼</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item highlight">미국은 아무것도 안 해도 돈이 들어옴</div>
+      </div>
+
+      <p class="body-text">이 흐름이 <strong>자동으로</strong> 만들어지는 거야. 경제학자들은 이걸 <span class="privilege-tag">과도한 특권 Exorbitant Privilege</span> 이라고 불러. 미국만 누리는 말도 안 되는 혜택이라는 뜻이야.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section class="section fade-in">
+    <div class="container">
+      <span class="section-number">04</span>
+      <div class="section-label">군사력과 페트로달러</div>
+      <h2 class="section-title">군사력은<br>이 시스템의 경호원</h2>
+
+      <p class="body-text">근데 이 시스템이 그냥 유지될까? 아니야. 뒤에서 <strong>군사력이 경호원</strong> 역할을 하고 있어.</p>
+
+      <div class="analogy">
+        <div class="analogy-label">📌 쉬운 비유</div>
+        <p>학교 짱(미국)이 매점 주인(산유국)한테 이렇게 말하는 거야. <strong>"내가 너 괴롭히는 애들 다 막아줄게. 근데 매점에서 물건 살 때는 무조건 내 쿠폰으로만 받아."</strong> 매점 주인 입장에선 거절하기가... 쉽지 않지.</p>
+      </div>
+
+      <p class="body-text">실제로 미국은 지금도 중동 지역에 항공모함, 공군기지, 수만 명의 군인을 배치하고 있어. 이건 단순한 "세계 평화 유지"가 아니라, <strong>페트로달러 시스템을 지키는 군사적 보험</strong>이기도 해.</p>
+
+      <div class="callout">
+        <div class="callout-label">이게 왜 중요하냐면</div>
+        <p>페트로달러 시스템은 단순한 경제 협약이 아니야. "달러로만 석유를 사고팔아야 한다"는 규칙을 미국의 군사력이 뒤에서 강제하는 시스템이야.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section class="section fade-in">
+    <div class="container">
+      <span class="section-number">05</span>
+      <div class="section-label">역사적 사례들</div>
+      <h2 class="section-title">이 규칙을 어기면<br>어떻게 됐을까?</h2>
+
+      <p class="body-text">역사에서 이 시스템에 도전했던 나라들이 있었어. 결과가 어떻게 됐는지 봐봐.</p>
+
+      <div class="history-cards">
+
+        <div class="history-card">
+          <div class="history-card-header">
+            <div class="country-flag">🇮🇶</div>
+            <div class="country-info">
+              <strong>이라크 — 사담 후세인</strong>
+              <span>2000년 · 석유 유로화 결제 선언</span>
+            </div>
+          </div>
+          <div class="history-card-body">
+            <div class="what-they-did">
+              사담 후세인이 갑자기 선언했어: <em>"이제 이라크 석유는 달러 말고 유로화로 팔겠습니다."</em> 달러 대신 유로로 석유를 판 첫 번째 산유국이 됐어.
+            </div>
+            <div class="what-happened">
+              <div class="result-tag">RESULT</div>
+              <br>2003년 미국이 이라크를 침공했어. 공식 명분은 "대량살상무기 보유 의혹"이었지만, 침공 후 대량살상무기는 끝내 발견되지 않았어. 그런데 신기하게도, 침공 직후 이라크 석유 거래는 <strong>다시 달러로 돌아왔어.</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="history-card">
+          <div class="history-card-header">
+            <div class="country-flag">🇱🇾</div>
+            <div class="country-info">
+              <strong>리비아 — 카다피</strong>
+              <span>2009년 · 금 디나르 계획</span>
+            </div>
+          </div>
+          <div class="history-card-body">
+            <div class="what-they-did">
+              카다피는 더 야심찬 계획을 세웠어: <em>"아프리카 나라들이 힘을 합쳐서 금으로 만든 '금 디나르' 화폐를 만들자. 아프리카 석유는 이걸로만 팔자."</em> 달러를 금으로 대체하겠다는 거야.
+            </div>
+            <div class="what-happened">
+              <div class="result-tag">RESULT</div>
+              <br>2011년 미국·프랑스·영국이 리비아 내전에 군사 개입했어. 카다피는 사망했고, 금 디나르 계획은 흔적도 없이 사라졌어. 나중에 공개된 미국 국무장관의 이메일에는 <strong>"카다피의 금 화폐 계획이 개입 이유 중 하나였다"</strong>는 내용이 담겨 있었어.
+            </div>
+          </div>
+        </div>
+
+        <div class="history-card">
+          <div class="history-card-header">
+            <div class="country-flag">🇮🇷</div>
+            <div class="country-info">
+              <strong>이란 — 지금도 진행 중</strong>
+              <span>지속적 · 달러 우회 거래 시도</span>
+            </div>
+          </div>
+          <div class="history-card-body">
+            <div class="what-they-did">
+              이란은 오래전부터 석유를 달러 외의 화폐로 팔려고 시도해왔어.
+            </div>
+            <div class="what-happened">
+              <div class="result-tag">RESULT</div>
+              <br>미국은 이란에 극도로 강력한 경제 제재를 가하고 있어. 이란은 국제 금융 시스템(SWIFT)에서 차단되어 있고, 이란과 거래하는 다른 나라 기업도 제재를 받아.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="body-text" style="margin-top: 8px;">물론 미국이 개입한 데는 인권 문제, 핵 개발 같은 다른 이유들도 있어. 하지만 <strong>이 나라들의 공통점이 "달러 패권에 도전했다"는 것</strong>은 분명히 눈에 띄는 패턴이야.</p>
+
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>나라</th>
+            <th>한 일</th>
+            <th>미국의 반응</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🇮🇶 이라크</td>
+            <td>석유를 유로로 판매 선언</td>
+            <td>침공, 정권 붕괴</td>
+          </tr>
+          <tr>
+            <td>🇱🇾 리비아</td>
+            <td>금 화폐로 달러 대체 시도</td>
+            <td>군사 개입, 지도자 사망</td>
+          </tr>
+          <tr>
+            <td>🇮🇷 이란</td>
+            <td>달러 우회 거래 시도</td>
+            <td>강력한 경제 제재</td>
+          </tr>
+          <tr>
+            <td>🇻🇪 베네수엘라</td>
+            <td>석유를 위안화로 판매</td>
+            <td>제재 + 반정부 세력 지원</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section class="section fade-in">
+    <div class="container">
+      <span class="section-number">06</span>
+      <div class="section-label">지금은?</div>
+      <h2 class="section-title">그래서, 달러 패권이<br>흔들리면?</h2>
+
+      <p class="body-text">지금 이 시스템이 조금씩 흔들리고 있어.</p>
+
+      <div class="callout">
+        <div class="callout-label">최근 변화들</div>
+        <p>러시아는 서방의 제재 이후 석유를 위안화·루블화로 팔기 시작했고, 사우디아라비아도 중국에 위안화로 석유를 팔기 시작했어. 중국·러시아·브라질 등 BRICS 국가들이 달러 의존도를 줄이려 뭉치고 있어.</p>
+      </div>
+
+      <p class="body-text">만약 "석유 = 달러" 규칙이 무너지면 어떻게 될까?</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>✅ 지금</th>
+            <th>⚠️ 달러가 필요 없어지면</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>석유 구매</td>
+            <td>달러 반드시 필요</td>
+            <td>달러 안 모아도 됨</td>
+          </tr>
+          <tr>
+            <td>달러 보유</td>
+            <td>남은 달러로 국채 매입</td>
+            <td>국채 살 이유 없음</td>
+          </tr>
+          <tr>
+            <td>자금 조달</td>
+            <td>미국은 돈 빌리기 쉬움</td>
+            <td>미국은 돈 빌리기 어려워짐</td>
+          </tr>
+          <tr>
+            <td>이자율</td>
+            <td>낮은 이자로도 팔림</td>
+            <td>높은 이자 줘야 팔림</td>
+          </tr>
+          <tr>
+            <td>결과</td>
+            <td>나라 운영 가능</td>
+            <td>재정 위기 → 디폴트 가능성</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="body-text">국채를 아무도 안 사면 미국은 더 높은 이자를 줘야 해. 이자가 올라가면 정부가 감당을 못 하게 되고, 극단적으로는 <strong>"돈 못 갚겠다(디폴트)"</strong> 상황까지 갈 수 있어.</p>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="section fade-in">
+    <div class="container">
+      <div class="final-box">
+        <p>
+          미국은 <span class="highlight">실력 반, 시스템 반</span>으로 강대국이 됐어.<br><br>
+          경제력과 기술력도 물론 대단하지만, 그 뒤에는 <span class="highlight">"전 세계가 달러를 쓸 수밖에 없게 만든 구조"</span>가 있었어. 그리고 그 구조는 군사력으로 지켜지고 있었고, 흔들리려 할 때마다 가만두지 않았어.<br><br>
+          페트로달러 시스템은 단순한 경제 이야기가 아니야. <span class="highlight">돈과 석유와 군사력이 얽힌, 지난 50년 세계를 지배한 거대한 게임</span>이야.<br><br>
+          그리고 지금, 그 게임의 규칙이 서서히 바뀌고 있어.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>페트로달러 · 달러 패권 · 국가 부채 — 중학생을 위한 세계 경제 이야기</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
